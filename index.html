@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hanoi Tower</title>
+</head>
+<body>
+  <!-- Please change h1 into your student ID_your name -->
+  <!-- EX: 112306099_小貓咪 -->
+  <h1>111305011_楊子儀</h1>
+
+  <div id="output"></div>
+
+  <!-- 引用 JavaScript 檔案 -->
+  <script>
+    function hanoiTower(n, source, auxiliary, target) {
+      function displayState() {
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML += `<p>A: ${JSON.stringify(source)}</p>`;
+        outputDiv.innerHTML += `<p>B: ${JSON.stringify(auxiliary)}</p>`;
+        outputDiv.innerHTML += `<p>C: ${JSON.stringify(target)}</p>`;
+        outputDiv.innerHTML += '<p>------------------</p>';
+      }
+
+      if (n === 0) {
+        return;
+      }
+
+      if (n === 1) {
+        target.push(source.pop());
+        displayState();
+        return;
+      }
+
+      hanoiTower(n - 1, source, target, auxiliary);
+      target.push(source.pop());
+      displayState();
+      hanoiTower(n - 1, auxiliary, source, target);
+    }
+
+    // Example usage
+    const sourceRod = [3, 2, 1];
+    const auxiliaryRod = [];
+    const targetRod = [];
+
+    hanoiTower(sourceRod.length, sourceRod, auxiliaryRod, targetRod);
+  </script>
+</body>
+</html>
